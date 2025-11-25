@@ -11,7 +11,6 @@ def calcRegLoss(model):
 	ret = 0
 	for W in model.parameters():
 		ret += W.norm(2).square()
-	# ret += (model.usrStruct + model.itmStruct)
 	return ret
 
 def contrastLoss(embeds1, embeds2, nodes, temp):

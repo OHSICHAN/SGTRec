@@ -16,6 +16,9 @@ class Coach:
 
 		print('USER', args.user, 'ITEM', args.item)
 		print('NUM OF INTERACTIONS', self.handler.trnLoader.dataset.__len__())
+		print(f"DATA : {args.data}")
+		print(f"BLOCK_NUM : {args.block_num}")
+		print(f"Dim : {args.latdim}")
 		self.metrics = dict()
 		mets = ['Loss', 'preLoss', 'Recall', 'NDCG']
 		for met in mets:
@@ -57,6 +60,9 @@ class Coach:
 
 	def prepareModel(self):
 		self.model = TransGNN().cuda()
+		low, high = handler.eigen_low, handler.eigen_high
+		self.model.eigen_low  = low.cuda()
+		self.model.eigen_high = high.cuda()
 		self.opt = t.optim.Adam(self.model.parameters(), lr=args.lr, weight_decay=0)
 	
 	def trainEpoch(self):
@@ -131,6 +137,12 @@ class Coach:
 	def saveHistory(self):
 		if args.epoch == 0:
 			return
+
+		history_dir = '../History/'
+		models_dir = '../Models/'
+		os.makedirs(history_dir, exist_ok=True)
+		os.makedirs(models_dir, exist_ok=True)
+
 		with open('../History/' + args.save_path + '.his', 'wb') as fs:
 			pickle.dump(self.metrics, fs)
 

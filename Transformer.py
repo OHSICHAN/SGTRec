@@ -6,7 +6,6 @@ import os
 import torch_geometric.nn as pygnn
 import math
 
-
 def padding_mask(seq):
     length = seq.shape[1]
     mask = seq.eq(0)
@@ -42,7 +41,6 @@ class TransformerEncoderLayer(nn.Module):
 
         return self.norm2(x+y)
     
-
 class Encoder_Layer(nn.Module):
     def __init__(self, embedding_dim=128, hidden_dim=64, num_heads=8, dropout=0):
         super(Encoder_Layer, self).__init__()

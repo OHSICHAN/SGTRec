@@ -1,19 +1,19 @@
-# TransGNN: Harnessing the Collaborative Power of Transformers and Graph Neural Networks for Recommender Systems
+# SGTRec: Integrating Spectral Encoding with Graph Neural Networks and Transformers for Recommendation
 
-![python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)
-![cuda 12.1](https://img.shields.io/badge/cuda-12.1-green.svg)
+<!-- ![python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)
+![cuda 12.1](https://img.shields.io/badge/cuda-12.1-green.svg) -->
 
 
-## About
+<!-- ## About
 - This is the code for SIGIR 2024 paper [TransGNN: Harnessing the Collaborative Power of Transformers and Graph Neural Networks for Recommender Systems](https://arxiv.org/pdf/2308.14355).
 
 
 ## Abstract
 Graph Neural Networks (GNNs) have emerged as promising solutions for collaborative filtering (CF) through the modeling of user-item interaction graphs. The nucleus of existing GNN-based recommender systems involves recursive message passing along user-item interaction edges to refine encoded embeddings. Despite their demonstrated effectiveness, current GNN-based methods encounter challenges of limited receptive fields and the presence of noisy "interest-irrelevant" connections. In contrast, Transformerbased methods excel in aggregating information adaptively and globally. Nevertheless, their application to large-scale interaction graphs is hindered by inherent complexities and challenges in capturing intricate, entangled structural information. In this paper, we propose TransGNN, a novel model that integrates Transformer and GNN layers in an alternating fashion to mutually enhance their capabilities. Specifically, TransGNN leverages Transformer layers to broaden the receptive field and disentangle information aggregation from edges, which aggregates information from more relevant nodes, thereby enhancing the message passing of GNNs. Additionally, to capture graph structure information effectively, positional encoding is meticulously designed and integrated into GNN layers to encode such structural knowledge into node attributes, thus enhancing the Transformer’s performance on graphs. Efficiency considerations are also alleviated by proposing the sampling of the most relevant nodes for the Transformer, along with two efficient sample update strategies to reduce complexity. Furthermore, theoretical analysis demonstrates that TransGNN offers increased expressiveness compared to GNNs, with only a marginal increase in linear complexity. Extensive experiments on five public datasets validate the effectiveness and efficiency of TransGNN.
 
-<img src='framework.png' width=100% />
+<img src='framework.png' width=100% /> -->
 
-## Citation
+<!-- ## Citation
 Please kindly use the following BibTex if you cite our paper:
 ```
 @article{zhang2023can,
@@ -50,25 +50,26 @@ Five widely used dataset are adopted:
 
 
 ## Usage
-Please unzip the datasets first. Also you need to create the `Models/` directory. The following command lines start training and testing on the three datasets, respectively. Training and testing logs for trained models are contained in the `History/` directory. We find that TransGNN demonstrates robust performance across a variety of settings and is notably resilient to variations in hyperparameter configurations. Users can achieve strong results by employing the default settings provided.
+Please unzip the datasets first. Also you need to create the `Models/` directory. The following command lines start training and testing on the three datasets, respectively. Training and testing logs for trained models are contained in the `History/` directory. We find that TransGNN demonstrates robust performance across a variety of settings and is notably resilient to variations in hyperparameter configurations. Users can achieve strong results by employing the default settings provided. -->
 
 * Yelp
 ```
-python Main.py --data yelp 
+python Main.py --data yelp --topk 20 --block_num 5 --cheb_K 3 --epoch 65
+
 ```
 * Gowalla
 ```
-python Main.py --data gowalla 
+python Main.py --data gowalla --topk 20 --block_num 5 --cheb_K 3 --epoch 45
 ```
 * Tmall
 ```
-python Main.py --data tmall 
+python Main.py --data tmall --topk 20 --block_num 5 --cheb_K 3 --epoch 95
 ```
-* Amazon-Book
+<!-- * Amazon-Book
 ```
 python Main.py --data amazon-book 
 ```
 * MovieLens
 ```
 python Main.py --data ml10m 
-```
+``` -->
